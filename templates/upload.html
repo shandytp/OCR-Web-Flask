@@ -3,30 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="static/style.css">
+
     <title>Upload</title>
 </head>
 <body>
-    {% if msg %}
-    <h1>{{ msg }}</h1>
-    {% endif %}
-
-    <h1>Upload Picture</h1>
-
-    <form enctype="multipart/form-data" method="post">
-    <p><input type="file" name="file">
-    <input type="submit" value="Upload"></p>
-    </form>
-
-    <h1>Result:</h1>
-    {% if img_src %}
-        <img src="{{ img_src }}">
-    {% endif %}
-
-    {% if extracted_text %}
-        <p> The extracted text from the image above is: <b> {{ extracted_text }}</b></p>
+<!-- Navbar -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index">
+            <img src="static/logo.png" alt="Logo UMM" width="150" height="50">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="upload">Upload</a>
+            </li>
+        </div>
+      </nav>
+ </header>
+<br>
+    <div class="container">
+        {% if msg %}
+        <h1>{{ msg }}</h1>
+        {% endif %}
     
-    {% else %}
-        The extracted text will be displayed here
-    {% endif %}
+        <h1>Upload Picture</h1>
+        
+        <form enctype="multipart/form-data" method="post" class="md-form">
+            <div class="file-field">
+                <p><input type="file" name="file">
+                <button type="submit" class="btn btn-success">Upload</button>
+                <!-- <input type="submit" value="Upload">  -->
+                </p>
+                <!-- <button class="btn btn-success"><input type="submit" value="Upload"></p></button> -->
+            </div>
+        </form>
+
+        <h1>Result:</h1>
+        {% if img_src %}
+            <img src="{{ img_src }}">
+        {% endif %}
+    
+        {% if extracted_text %}
+            <p> The extracted text from the image above is: <b> {{ extracted_text }}</b></p>
+        
+        {% else %}
+            The extracted text will be displayed here
+        {% endif %}
+    </div>
+
+
+
 </body>
 </html>
