@@ -1,0 +1,6 @@
+Flask
+Pillow
+pytesseract
+werkzeug.utils
+os
+Jinja2
