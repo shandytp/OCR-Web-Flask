@@ -1,6 +1,0 @@
-numpy
-Flask
-pytesseract
-os
-pandas
-Pillow
