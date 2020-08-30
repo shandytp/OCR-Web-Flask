@@ -1,1 +1,1 @@
-web: gunicorn wsgi:app --log-file=-
+web: gunicorn -w 4 -k uvicorn.workers.UvicornWorker pythoncode:app --log-file=-
