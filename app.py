@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
-from ocr_core import ocr_core
+from ocr_core import ocr_core, resizeImg, grayscaleImg, adaptive_thresholding
 
 # define upload folder
 UPLOAD_FOLDER = '/static/uploads/'
@@ -16,7 +16,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/index')
+@app.route('/')
 def home_page():
     return render_template('index.html')
 
