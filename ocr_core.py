@@ -1,35 +1,36 @@
 from PIL import Image
 import pytesseract
-import cv2
-import numpy as np
 
 def ocr_core(filename):
     """
     This function will handle the core OCR processing of images.
     """
     # pytesseract.pytesseract.tesseract_cmd = r'D:/Tesseract-OCR/tesseract.exe'
-    # nparray = np.array(filename)
-    # img = Image.fromarray(nparray)
 
-    # Read image with CV2
-    img = cv2.imread(filename)
+    text = pytesseract.image_to_string(filename)
 
-    # Resize image to 150x150
-    resize = cv2.resize(img, (150, 150))
+    if text == 'PET' or text == '1':
+        print('PET adalah bla bla bla') 
 
-    # Convert image to grayscale
-    grayscale = cv2.cvtColor(resize, cv2.COLOR_BGR2GRAY)
+    elif text == 'PE-HD' or text == 'PE HD' or text == '2':
+        print('PE-HD adalah bla bla bla')
 
-    # Give image blur to noise image
-    blur = cv2.medianBlur(grayscale, (5,5))
+    elif text == 'PVC' or text == '3':
+        print('PVC adalah ')
+    
+    elif text == 'PE-LD' or text == 'PE LD' or text == '4':
+        print('PE-LD adalah')
 
-    # Remove noise with Otsu
-    adaptive_thresh = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    elif text == 'PP' or text == '5':
+        print('PP adalah ')
+    
+    elif text == 'PS' or text == '6':
+        print('PS adalah ...')
 
-    # Process OCR
-    text = pytesseract.image_to_string(adaptive_thresh)
-
+    elif text == 'Other' or text == 'o' or text == 'O' or text == '7':
+        print('Other adalah ...')
+        
     return text
 
-
+print(ocr_core('images/ocr_example.png'))
 
