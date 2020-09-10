@@ -7,7 +7,7 @@ def ocr_core(filename):
     """
     # pytesseract.pytesseract.tesseract_cmd = r'D:/Tesseract-OCR/tesseract.exe'
 
-    text = pytesseract.image_to_string(filename)
+    text = pytesseract.image_to_string(Image.open(filename))
 
     if text == 'PET' or text == '1':
         print('PET adalah bla bla bla') 
@@ -32,5 +32,5 @@ def ocr_core(filename):
         
     return text
 
-print(ocr_core('images/ocr_example.png'))
+# print(ocr_core('images/ocr_example.png'))
 
