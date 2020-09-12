@@ -1,50 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="static/style.css">
 
     <title>Upload</title>
 </head>
+
 <body>
-<!-- Navbar -->
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">
-            <img src="static/logo.png" alt="Logo UMM" width="150" height="50">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="upload">Upload</a>
-            </li>
-        </div>
-      </nav>
- </header>
-<br>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">
+                <img src="static/logo.png" alt="Logo UMM" width="150" height="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="upload">Upload</a>
+                    </li>
+            </div>
+        </nav>
+    </header>
+    <br>
     <div class="container">
         {% if msg %}
         <h1>{{ msg }}</h1>
         {% endif %}
-    
+
         <h1>Upload Picture</h1>
-        
+
         <form enctype="multipart/form-data" method="post" class="md-form">
             <div class="file-field">
                 <p><input type="file" name="file">
-                <button type="submit" class="btn btn-success">Upload</button>
-                <!-- <input type="submit" value="Upload">  -->
+                    <button type="submit" class="btn btn-success">Upload</button>
+                    <!-- <input type="submit" value="Upload">  -->
                 </p>
                 <!-- <button class="btn btn-success"><input type="submit" value="Upload"></p></button> -->
             </div>
@@ -52,18 +58,100 @@
 
         <h1>Result:</h1>
         {% if img_src %}
-            <img src="{{ img_src }}">
+        <img src="{{ img_src }}">
         {% endif %}
-    
+
         {% if extracted_text %}
-            <p> The extracted text from the image above is: <b> {{ extracted_text }}</b></p>
-        
+            <p> Plastic Recycle Code: <b> {{ extracted_text }}</b></p>
+            
+
+            {% if "PET" in extracted_text %}
+                <p>PET atau PETE (Polyethylene) disertai angka 1 ini biasa ditemukan pada minuman air dalam kemasan yang trasparan dan cenderung tipis. Arti kode ini adalah ditujukan untuk sekali pakai atau dianjurkan untuk tidak dipakai ulang.</p>
+                <b>Penggunaan </b> 
+                <ul>
+                    <li>Disarankan untuk sekali pakai dan tidak untuk dipakai ulang. Apabila terdesak, jangan terlalu sering</li>
+                    <li>Hindari untuk menyimpan air hangat atau panas di dalamnya, karena pada suhu tinggi, lapisan polimer plastik dengan kode ini akan meleleh dan mengeluarkan zat karsinogenik sebagai penyebab kanker pada jangka panjang</li>
+
+                </ul> 
+                <b>Daur Ulang</b>                
+                <p>Daur ulang jenis plastik ini dapat dibuat menjadi produk kain polar fleece, fiber, tote bag, karpet, furnitur.</p>
+
+            {% elif 'PE-HD' in extracted_text %}
+                <p>PE-HD atau HDPE (High Density Polyethylene) ini biasanya sering ditemukan pada wadah minuman komersil(jus, soda), detergen, shampoo yang cenderung berbahan kaku. Biasanya berwujud kaku, kuat, keras, buram, lebih tahan terdahap suhu tinggi, dan termasuk mudah untuk didaur ulang. Jenis plastik ini adalah yang paling aman untuk mengemas makanan dan minuman.</p>
+                <b>Penggunaan</b>
+                <ul>
+                    <li>meskipun jenis plastik ini paling aman untuk mengemas makanan atau minuman, tetap disarankan untuk digunakan sekali pakai saja,</li>
+                </ul>
+                <b>Daur Ulang</b>
+                <p>Daur ulang jenis plastik ini dapat dibuat menjadi produk botol deterjen, botol minyak, pulpen, kontainer, ubin lantai, pipa drainase, meja piknik, dan botol sampo.</p>
+
+            {% elif 'PVC' in extracted_text %}
+                <p>PVC atau Polyvinyl Chloride adalah jenis plastik yang paling sulit didaur ulang. Biasanya digunakan sebagai bahan jenis pipa air.</p>
+                <b>Penggunaan</b>
+                <ul>
+                    <li>meskipun jenis plastik ini paling aman untuk mengemas makanan atau minuman, namun tetap disarankan untuk digunakan sekali pakai saja. </li>
+                </ul>
+                <b>Daur Ulang</b>
+                <p>Mengingat cara daur ulang sampah jenis ini sulit karena adanya bahan aditif yang termasuk logam berat yang dianggap berbahaya untuk didaur ulang. Pilihan terbaik adalah dengan insinerasi dengan pemulihan energi. Selain itu dapat juga dibuat menjadi kerajinan seperti lampu artistik, tempat pensil, dan juga pot tanaman.</p>
+
+            {% elif 'PE-LD' or 'LD-PE' in extracted_text %}
+                <p>PE-LD atau LDPE (Low Density Polyethylene) dibuat menggunakan minyak bumi. Plastik ini memiliki resistensi yang cukup baik terhadap reaksi kimia sehingga cukup aman untuk membungkus makanan atau minuman. Selain itu, kelebihan jenis plastik ini adalah kuat, fleksibel, tembus cahaya, dan proteksi terhadap uap air. Biasanya ditemukan pada kantong plastik transparan, dan botol minuman yang dapat diperas.</p>
+                <b>Penggunaan</b>
+                <ul>
+                    <li>LDPE yang lebih lembut serta lentur cocok untuk lembaran plastik, tas kresek, terpal, lap, tabung plastik, dan wadah kimia. Penggunaan paling populer mungkin untuk botol air dan kemasan berbagai produk, mulai dari makanan hingga obat.</li>
+                </ul>
+                <b>Daur Ulang</b>
+                <p>Daur ulang jenis plastik ini dapat dibuat menjadi tempat sampah, ubin lantai, dan amplop pengiriman</p>
+
+            {% elif 'PP' in extracted_text %}
+                <p>PP (Polypropylene) memiliki sifat kuat, tahan panas, cukup resisten dengan kelembapan, minyak, dan memiliki proteksi terhadap uap air. Biasanya ditemukan pada botol minuman, botol bayi, kotak makanan, sedotan, kantong belanja, gelas, wadah margarin.</p>
+                <b>Penggunaan</b>
+                <ul>
+                    <li>kelebihan jenis plastik ini adalah bisa digunakan berulang kali</li>
+                </ul>
+                <b>Daur Ulang</b>
+                <p>daur ulang jenis plastik ini dapat dibuat menjadi produk lampu sein, kabel baterai, sapu, sikat, dan rak sepeda.</p>
+            
+            {% elif 'PS' in extracted_text %}
+                <p>PS (Polystyrene) adalah plastik yang biasanya kaku, getas, buram, dan sulit didaur ulang. Biasanya ditemukan pada styrofoam.</p>
+                <b>Penggunaan</b>
+                <ul>
+                    <li>Tidak disarankan untuk membungkus makanan atau minuman dikarenakan styrene yang terkandung di dalamnya dapat mudah menyebar yang berbahaya untuk kesehatan otak, reproduksi, hormon, dan sistem syaraf.</li>
+                </ul>
+                <b>Daur Ulang</b>
+                <p>Daur ulang jenis plastik ini dapat dibuat menjadi produk insulator, saklar, wadah telur, dan penggaris.</p>
+
+            {% elif 'Other' or 'O' in extracted_text %}
+                <p>Terdapat beberapa jenis plastik dengan kode ini</p>
+                <ul>
+                    <li><b>SAN (Styrene Acrylonitrile)</b></li>
+                    <p>Kuat, resisten terhadap reaksi kimia dan suhu, dan sangat aman untuk mengemas makanan atau minuman. Biasa ditemukan pada mangkuk mixer, pembungkus termos, piring makan, alat makan, penyaring kopi, dan sikat gigi</p>
+                    <li><b>ABS (Acrylonitrile Butadiene Styrene)</b></li>
+                    <p>Kuat, serta resisten terhadap reaksi kimia dan suhu. Ditemukan pada wadah makanan atau miniman, mainan anak, serta pipa</p>
+                    <li><b>PC (Polycarbonate)</b></li>
+                    <p>Tidak mudah pecah, ringan, dan transparan. Walau biasa ditemukan pada galon air, gelas balita, botol minuman, serta beberapa botol bayi, PC tidak disarankan penggunaannya untuk mengemas makanan atau minuman tertentu, karena jenis plastik ini dapat melepas kandungan Bisphenol-A yang berbahaya bagi sistem hormon, imunitas, dan reproduksi.</p>
+                </ul>
+                <b>Penggunaan</b>
+                <ul>
+                    <li>: Plastik jenis ini bisa digunakan berulang kali tergantung jenis campuran plastiknya. Namun, karena sulit mengetahui jenis bahan plastik yang dipakai, lebih baik digunakan sekali pakai saja apabila menjadi wadah tempat makanan. Dikarenakan mengandung kimia bisphenol A (BPA) yang dapat mengkontaminasi makanan ketika dicuci untuk digunakan kembali.</li>
+                </ul>
+                <b>Daur Ulang</b>
+                <p>plastik jenis ini sangat sulit didaur ulang. Kalaupun melalui proses daur ulang, tahapannya cukup sulit dan hanya bisa diolah kembali menjadi papan plastik.</p>
+            
+            {% else %}
+                <p>No Plastic</p>
+
+            
+            {% endif %}
+
         {% else %}
-            The extracted text will be displayed here
+            <p>The extracted text will be displayed here</p>
         {% endif %}
+
     </div>
 
 
 
 </body>
+
 </html>

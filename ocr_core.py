@@ -1,31 +1,41 @@
 from PIL import Image
 import pytesseract
-import cv2
 
 def ocr_core(filename):
     """
     This function will handle the core OCR processing of images.
     """
-    pytesseract.pytesseract.tesseract_cmd = r'D:/Tesseract-OCR/tesseract.exe'
-    text = pytesseract.image_to_string(Image.open(filename)) # Open image with PIL
+    # pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract.exe'
 
-    return text
+    text = pytesseract.image_to_string(Image.open(filename))
 
-def resizeImg(filename):
-    """
-    This function will handle resize image
-    """
-    return cv2.resize(filename, (150, 150))
+    if 'PET' in text:
+        result = 'PET'
+        return result
+    
+    elif 'PE-HD' in text:
+        result = 'PE-HD'
+        return result
+    
+    elif 'PVC' in text:
+        result = 'PVC'
+        return result
+    
+    elif 'PE-LD' or 'LDPE' in text:
+        result = 'PE-LD'
+        return result
 
-def grayscaleImg(filename):
-    """
-    This function will process image to grayscale
-    """
-    return cv2.cvtColor(filename, cv2.COLOR_BGR2GRAY)
+    elif 'PP' in text:
+        result = 'PP'
+        return result
 
-def adaptive_thresholding(filename):
-    """
-    This function will handle noises in the image and convert it to thresholding
-    """
-    blur = cv2.medianBlur(filename, (5, 5))
-    return cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    elif 'PS' in text:
+        result = 'PS'
+        return result
+    elif 'Other' or 'O' in text:
+        result = 'Other'
+        return result
+
+    else:
+        result = """No Plastic"""
+        return result
