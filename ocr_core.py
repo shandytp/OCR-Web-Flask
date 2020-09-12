@@ -5,32 +5,37 @@ def ocr_core(filename):
     """
     This function will handle the core OCR processing of images.
     """
-    # pytesseract.pytesseract.tesseract_cmd = r'D:/Tesseract-OCR/tesseract.exe'
+    # pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract.exe'
 
     text = pytesseract.image_to_string(Image.open(filename))
 
-    if text == 'PET' or text == '1':
-        print('PET adalah bla bla bla') 
-
-    elif text == 'PE-HD' or text == 'PE HD' or text == '2':
-        print('PE-HD adalah bla bla bla')
-
-    elif text == 'PVC' or text == '3':
-        print('PVC adalah ')
+    if 'PET' in text:
+        result = 'PET'
+        return result
     
-    elif text == 'PE-LD' or text == 'PE LD' or text == '4':
-        print('PE-LD adalah')
-
-    elif text == 'PP' or text == '5':
-        print('PP adalah ')
+    elif 'PE-HD' in text:
+        result = 'PE-HD'
+        return result
     
-    elif text == 'PS' or text == '6':
-        print('PS adalah ...')
+    elif 'PVC' in text:
+        result = 'PVC'
+        return result
+    
+    elif 'PE-LD' or 'LDPE' in text:
+        result = 'PE-LD'
+        return result
 
-    elif text == 'Other' or text == 'o' or text == 'O' or text == '7':
-        print('Other adalah ...')
-        
-    return text
+    elif 'PP' in text:
+        result = 'PP'
+        return result
 
-# print(ocr_core('images/ocr_example.png'))
+    elif 'PS' in text:
+        result = 'PS'
+        return result
+    elif 'Other' or 'O' in text:
+        result = 'Other'
+        return result
 
+    else:
+        result = """No Plastic"""
+        return result
